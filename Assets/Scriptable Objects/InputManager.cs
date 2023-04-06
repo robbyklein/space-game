@@ -7,6 +7,7 @@ public class InputManager : ScriptableObject {
     public Input Input { get; private set; }
 
     public event Action OnPlayingFire;
+    public event Action OnPlayingFireCanceled;
 
     public Vector2 MovementInput { get; private set; } = Vector2.zero;
     public Vector2 TurnInput { get; private set; } = Vector2.zero;
@@ -18,7 +19,10 @@ public class InputManager : ScriptableObject {
         // Subscribe to events
         Input.Playing.Movement.performed += HandlePlayingMovement;
         Input.Playing.Movement.canceled += HandlePlayingMovementCanceled;
+
         Input.Playing.Fire.performed += HandlePlayingFire;
+        Input.Playing.Fire.canceled += HandlePlayingFireCanceled;
+
         Input.Playing.Turn.performed += HandlePlayingTurn;
         Input.Playing.Turn.canceled += HandlePlayingTurn;
 
@@ -29,7 +33,10 @@ public class InputManager : ScriptableObject {
     void OnDisable() {
         Input.Playing.Movement.performed -= HandlePlayingMovement;
         Input.Playing.Movement.canceled -= HandlePlayingMovementCanceled;
+
         Input.Playing.Fire.performed -= HandlePlayingFire;
+        Input.Playing.Fire.canceled -= HandlePlayingFireCanceled;
+
         Input.Playing.Turn.performed -= HandlePlayingTurn;
         Input.Playing.Turn.canceled -= HandlePlayingTurn;
 
@@ -45,6 +52,10 @@ public class InputManager : ScriptableObject {
 
     void HandlePlayingFire(InputAction.CallbackContext obj) {
         OnPlayingFire?.Invoke();
+    }
+
+    void HandlePlayingFireCanceled(InputAction.CallbackContext obj) {
+        OnPlayingFireCanceled?.Invoke();
     }
 
     void HandlePlayingTurn(InputAction.CallbackContext obj) {

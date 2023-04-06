@@ -1,6 +1,8 @@
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
+    [SerializeField] LayerMask boundryMask;
+
     float speed = 10f;
     Rigidbody2D rb;
 
@@ -10,14 +12,10 @@ public class Bullet : MonoBehaviour {
         rb.velocity = transform.up * speed;
     }
 
-    void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag != "Boundries") {
-            Destroy(gameObject);
-        }
-    }
+
 
     void OnTriggerExit2D(Collider2D collision) {
-        if (collision.tag == "Boundries") {
+        if (boundryMask.IsInMask(collision.gameObject.layer)) {
             Destroy(gameObject);
         }
     }
