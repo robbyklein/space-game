@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour {
 
     bool Firing = false;
     private float lastFire = 0.0f;
-    public float fireRate = 0.1f;
+    [SerializeField] float fireRate = 0.1f;
 
     private void Update() {
         if (Firing && Time.time > lastFire + fireRate) {

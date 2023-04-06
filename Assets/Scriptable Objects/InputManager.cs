@@ -61,7 +61,5 @@ public class InputManager : ScriptableObject {
     void HandlePlayingTurn(InputAction.CallbackContext obj) {
         Vector2 turnInput = obj.ReadValue<Vector2>();
         TurnInput = turnInput;
-
-        Debug.Log("Setting turn input to" + turnInput);
     }
 }

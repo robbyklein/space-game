@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour {
 
 
     void OnTriggerExit2D(Collider2D collision) {
-        if (boundryMask.IsInMask(collision.gameObject.layer)) {
+        if (!boundryMask.IsInMask(collision.gameObject.layer)) {
             Destroy(gameObject);
         }
     }
