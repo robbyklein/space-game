@@ -1,19 +1,22 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
-    [SerializeField] LayerMask boundryMask;
+    public event Action<Bullet> BulletFreed;
 
-    float speed = 10f;
+    [SerializeField] LayerMask boundryMask;
+    [SerializeField] LayerMask playerMask;
+    [SerializeField] float speed = 10f;
+
     Rigidbody2D rb;
     Animator animator;
     BoxCollider2D boxCollider;
+    public GameObjectPool Pool;
 
-    // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-        rb.velocity = transform.up * speed;
     }
 
     void OnTriggerExit2D(Collider2D collision) {
@@ -29,8 +32,10 @@ public class Bullet : MonoBehaviour {
     }
 
     void DestroyBullet() {
-        Destroy(gameObject);
+        BulletFreed?.Invoke(this);
     }
 
-
+    public void Fire() {
+        rb.velocity = transform.up * speed;
+    }
 }

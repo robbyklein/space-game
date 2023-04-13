@@ -4,10 +4,11 @@ public class Weapon : MonoBehaviour {
     [SerializeField] InputManager inputManager;
     [SerializeField] Transform FirePoint;
     [SerializeField] GameObject ProjectilePrefab;
+    [SerializeField] GameObjectPool pool = new GameObjectPool();
 
+    [SerializeField] float fireRate = 0.1f;
     bool Firing = false;
     private float lastFire = 0.0f;
-    [SerializeField] float fireRate = 0.1f;
 
     private void Update() {
         if (Firing && Time.time > lastFire + fireRate) {
@@ -35,6 +36,9 @@ public class Weapon : MonoBehaviour {
     }
 
     void Fire() {
-        Instantiate(ProjectilePrefab, FirePoint.position, FirePoint.rotation);
+        var firedBullet = pool.Get();
+        firedBullet.transform.position = FirePoint.position;
+        firedBullet.transform.rotation = FirePoint.rotation;
+        firedBullet.GetComponent<Bullet>().Fire();
     }
 }

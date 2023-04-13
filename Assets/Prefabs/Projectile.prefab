@@ -9,12 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5874288832202212216}
-  - component: {fileID: 5402944461161931115}
   - component: {fileID: 3451705552882863029}
   - component: {fileID: 5650588614002839981}
-  - component: {fileID: 5242944228170583554}
   - component: {fileID: 1709011520127190320}
   - component: {fileID: 8895535979897666266}
+  - component: {fileID: 5242944228170583554}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -37,18 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5402944461161931115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5874288832202212218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18587e2627548f469fa518f5c4f16e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &3451705552882863029
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -122,21 +109,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &5242944228170583554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5874288832202212218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19a52b64676ae894bae81f573ab7ce2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundryMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!61 &1709011520127190320
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184,3 +156,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5242944228170583554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5874288832202212218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a52b64676ae894bae81f573ab7ce2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundryMask:
+    serializedVersion: 2
+    m_Bits: 64
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  speed: 10
+  Pool:
+    prefab: {fileID: 0}
+    initialAmount: 20
+    bufferAmount: 10
+    container: {fileID: 0}
